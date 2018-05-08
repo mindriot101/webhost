@@ -1,0 +1,18 @@
+:root {
+    --color-a: #f4f6f1;
+    --color-b: #cb7d63;
+    --color-c: #87b2b8;
+    --color-d: #af5750;
+    --color-e: #3c5e61;
+}
+
+body {
+    background: var(--color-e);
+    color: var(--color-a);
+    font-family: Tahoma, Geneva, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    text-shadow: 2px 2px 8px black;
+}

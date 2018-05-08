@@ -1,1 +1,1 @@
-FROM debian:9.4
+FROM nginx:1.13.12

@@ -1,4 +1,5 @@
-TAG := srwalker101/thewalke.rs:0.1.0
+VERSION := 0.1.0
+TAG := srwalker101/thewalke.rs:$(VERSION)
 RUN_NAME := webhost
 RUN_CMD := docker run --rm -it -p 8081:80 -v $(shell pwd)/content:/usr/share/nginx/html:ro --name $(RUN_NAME)
 

@@ -1,0 +1,5 @@
+---
+- hosts: webhost
+  tasks:
+    - name: Ping the system
+      ping:

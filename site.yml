@@ -1,10 +1,57 @@
 ---
-- hosts: webhost
+- hosts: all
   tasks:
     - name: Install prerequisites
       yum:
         name: "{{ item }}"
         state: present
       with_items:
+        - epel-release
+      become: yes
+
+    - name: Install nginx
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
         - nginx
+      become: yes
+
+    - name: Copy the sshd template
+      template:
+        src: sshd_config.j2
+        dest: /etc/ssh/sshd_config
+        owner: root
+        group: root
+        mode: u=rw,g=,o=
+      notify: restart ssh
+      become: yes
+
+    - name: Start nginx service
+      service:
+        name: nginx
+        state: started
+      become: yes
+
+    - name: Copy the nginx service
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: u=rw,g=,o=
+      notify: restart nginx
+      become: yes
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: sshd
+        state: restarted
+      become: yes
+
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
       become: yes

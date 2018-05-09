@@ -7,6 +7,7 @@
         state: present
       with_items:
         - epel-release
+        - ufw
       become: yes
 
     - name: Install nginx
@@ -42,6 +43,18 @@
         mode: u=rw,g=,o=
       notify: restart nginx
       become: yes
+
+    - name: Configure firewall
+      ufw:
+        port: "{{ item }}"
+        state: enabled
+        policy: deny
+      with_items:
+        - 22
+        - 80
+        - 443
+      become: yes
+
 
   handlers:
     - name: restart ssh

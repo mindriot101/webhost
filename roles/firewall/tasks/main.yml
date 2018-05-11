@@ -1,0 +1,11 @@
+- name: Configure firewall
+  ufw:
+    port: "{{ item }}"
+    state: enabled
+    policy: deny
+  with_items:
+    - 22
+    - 80
+    - 443
+  become: yes
+

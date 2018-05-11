@@ -1,0 +1,8 @@
+[ssh-local]
+enabled  = true
+port     = ssh
+filter   = ssh-local
+logpath  = %(sshd_log)s
+maxretry = 6
+
+

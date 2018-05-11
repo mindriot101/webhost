@@ -5,4 +5,4 @@
     - nginx
     - ssh
     - firewall
-
+    - { role: fail2ban, become: yes }

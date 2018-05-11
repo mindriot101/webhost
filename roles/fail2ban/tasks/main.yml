@@ -1,0 +1,23 @@
+---
+- name: Install fail2ban
+  yum:
+    name: fail2ban
+    state: present
+
+- name: Add "maximum authentication" line to config
+  template:
+    src: ssh-local.conf
+    dest: /etc/fail2ban/filter.d/ssh-local.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  notify: restart fail2ban
+
+- name: Copy custom fail2ban jail config
+  template:
+    src: jail.local
+    dest: /etc/fail2ban/jail.local
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  notify: restart fail2ban

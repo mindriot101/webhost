@@ -6,3 +6,4 @@
     - ssh
     - firewall
     - { role: fail2ban, become: yes }
+    - { role: logwatch, become: yes }

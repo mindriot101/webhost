@@ -1,0 +1,10 @@
+---
+- name: Install logwatch
+  yum:
+    name: logwatch
+    state: present
+
+- name: Set up cron job
+  template:
+    src: logwatchcron
+    dest: /etc/cron.daily/00logwatch

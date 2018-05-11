@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/usr/sbin/logwatch --output mail --mailto {{ mailto_user }} --detail high
